@@ -1,12 +1,16 @@
 import catEyes from '../assets/cat-eyes.png'
 
 export function Facts(){
+
+  fetch("https://catfact.ninja/fact").then((res) => res.json()).
+  then((data) => {
+    console.log(data)
+  });
+
   return(
-    <div>
-      <div>
-        <img src={catEyes} alt="" />
-      </div>
-      <h2 style={{color: "white"}}>Fact</h2>
+    <div className='generator'>
+      <img src={catEyes} alt="" />
+      <button>Generate Fact</button>
     </div>
   )
 }
