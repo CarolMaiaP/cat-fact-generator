@@ -44,3 +44,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.generate-btn button{
+  width: 350px
+}
+
+.cat-fact{
+  margin-top: 2.5rem;
+  color: #fff;
+}

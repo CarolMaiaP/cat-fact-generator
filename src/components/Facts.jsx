@@ -1,15 +1,29 @@
 import Axios from 'axios'
+import { useState, useEffect } from 'react'
 import catEyes from '../assets/cat-eyes.png'
 
 export function Facts(){
-  Axios.get("https://catfact.ninja/fact").then((res) => {
-    console.log(res.data)
-  })
+  const [catFact, setCatFact] = useState("");
+
+  useEffect(() => {
+    Axios.get("https://catfact.ninja/fact").then((res) => {
+      setCatFact(res.data.fact)
+    })
+  }, [])
 
   return(
-    <div className='generator'>
-      <img src={catEyes} alt="" />
-      <button>Generate Fact</button>
+    <div className='catFact'>
+      <div className='generator'>
+        <div className='cat-image'>
+          <img src={catEyes} alt="" />
+        </div>
+        <div className='generate-btn'>
+          <button>Generate Fact</button>
+        </div>
+      </div>
+      <div className='cat-fact'>
+        <h2>{catFact}</h2>
+      </div>
     </div>
   )
 }
