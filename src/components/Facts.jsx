@@ -5,10 +5,14 @@ import catEyes from '../assets/cat-eyes.png'
 export function Facts(){
   const [catFact, setCatFact] = useState("");
 
+  async function fetchCatFact(){
+    const api = await Axios.get("https://catfact.ninja/fact").then((res) => {
+    setCatFact(res.data.fact)
+  })
+  }
+
   useEffect(() => {
-    Axios.get("https://catfact.ninja/fact").then((res) => {
-      setCatFact(res.data.fact)
-    })
+    fetchCatFact();
   }, [])
 
   return(
@@ -18,7 +22,7 @@ export function Facts(){
           <img src={catEyes} alt="" />
         </div>
         <div className='generate-btn'>
-          <button>Generate Fact</button>
+          <button onClick={fetchCatFact}>Generate Fact</button>
         </div>
       </div>
       <div className='cat-fact'>
